@@ -1,12 +1,13 @@
 import mongoose from "mongoose";
 
 const connect = async () => {
-  mongoose
-  .connect(
-    'mongodb+srv://shubham2:1ZQeOqmlSTlV8xPA1@cluster0.gbu6v.mongodb.net/',
-  )
-  .then(() => console.log("Mongodb Connected"))
-  .catch((err) => console.log(err));
+ let url=process.env.MONGO_URI 
+  mongoose.connect(url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log('MongoDB connected successfully'))
+  .catch((err) => console.log('Error: ' + err));
 };
 
 export default connect;

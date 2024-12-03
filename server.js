@@ -29,6 +29,11 @@ app.use(errorHandler);
 //routes
 const routeFiles = fs.readdirSync("./src/routes");
 
+
+app.get('/', (req, res) => {
+  res.send('Hello, World!');
+});
+
 routeFiles.forEach((file) => {
   // use dynamic import
   import(`./src/routes/${file}`)

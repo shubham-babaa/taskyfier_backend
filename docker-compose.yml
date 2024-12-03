@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: 'mongo'  
+    volumes:
+      - ./data:/data
+    env_file:
+      - ./.env  
+    # networks:
+    #   - node-network  
+
+  backend_tsky:
+    build:
+      dockerfile: ./Dockerfile
+    ports:
+      - '8000:8000'
+    volumes:
+      - ./:/app:z
+      - /app/node_modules  
+    depends_on:
+      - mongodb  
+    # networks:
+    #   - node-network  
+
+volumes:
+  data:  
+
+# networks:
+#   node-network:
+#     driver: bridge  
